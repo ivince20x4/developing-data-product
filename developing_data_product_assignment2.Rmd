@@ -1,0 +1,42 @@
+---
+title: "DevDataProductAssignment2_Leaflet"
+author: "Vincent Lee"
+date: "August 17, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+```
+
+#Overview
+The assignment is about locating money services business companies in a particular city in my home country Malaysia. Money services business refers to currency exchange business, remittance business and wholesale currency business. 
+
+#Money Services Business companies in Malacca city, Malaysia
+
+```{r, echo=FALSE}
+library(leaflet)
+MSBIcon <- makeIcon(
+  iconUrl= "https://pbs.twimg.com/profile_images/3383371578/c8da95d8d2fc4f7f91ce290a00178532_400x400.jpeg",
+  iconWidth= 31*215/230, iconHeight =31, 
+  iconAnchorX = 31*215/230/2, iconAnchorY=16
+)
+
+MSBSites <- c(
+  "<a href='https://www.uaeexchange.com/mys/'>UAE Exchange</a>",
+  "<a href='http://www.cblmoneytransfer.com/contact.php'>CBL</a>",
+"<a href='http://www.businesslist.my/company/207344/amero-capital-holdings-sdn-bhd'>Amero</a>"  
+)
+
+MSBLatLong <- data.frame(
+  lat = c(2.2001137,2.2225391,2.1961106),
+  lng = c(102.2519449,102.2503043,102.2473012))
+
+MSBLatLong %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = MSBIcon, popup = MSBSites)
+```
+
+
+
